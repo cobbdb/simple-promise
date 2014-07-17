@@ -2,11 +2,12 @@ module.exports = function (task) {
     var cbThen = function () {};
     var cbError = function () {};
     var child = function (opts) {
+        var result;
         try {
-            task(opts);
-            cbThen(opts);
+            result = task(opts);
+            return cbThen(opts, result);
         } catch (err) {
-            cbError(err, opts);
+            return cbError(err, opts, result);
         }
     };
     child.then = function (cb) {
@@ -18,7 +19,7 @@ module.exports = function (task) {
         return child;
     };
     child.run = function (opts) {
-        child(opts);
+        return child(opts);
     };
     return child;
 };

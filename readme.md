@@ -51,9 +51,28 @@ Each method supports chaining for quick and clean instantiation.
 ## Immediately invoke your promise
 You can invoke immediately with the `run` method.
 
-    var greet = promise(function (name) {
+    promise(function (name) {
         console.log('Hello %s!', name);
     }).run('World');
+
+## Collect all return values
+Return values are passed along the chain so you can use them
+however you need.
+
+    var result = promise(function (name) {
+        return 'Hello!';
+    }).then(function (name, message) {
+        return name + ' says ' + message;
+    }).run('Tom');
+
+    var result = promise(function (name) {
+        throw Error('Hello!');
+    }).error(function (err, name) {
+        return name + ' says ' + err.message;
+    }).run('Tom');
+
+Both of these blocks will output the same string; `result`
+will equal `Tom says Hello!'
 
 ---------
 * See: http://github.com/cobbdb/simple-promise
