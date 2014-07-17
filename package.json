@@ -1,0 +1,30 @@
+{
+  "name": "simple-promise",
+  "version": "1.0.0",
+  "description": "Simple and fast promise factory for Node and web apps.",
+  "main": "src/promise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cobbdb/simple-promise.git"
+  },
+  "keywords": [
+    "Promise",
+    "simple",
+    "webapp",
+    "dep",
+    "quick",
+    "bare",
+    "minimal",
+    "callback",
+    "attach"
+  ],
+  "author": "Dan Cobb <cobbdb@gmail.com> (http://www.github.com/cobbdb)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cobbdb/simple-promise/issues"
+  },
+  "homepage": "https://github.com/cobbdb/simple-promise"
+}

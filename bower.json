@@ -1,0 +1,32 @@
+{
+  "name": "simple-promise",
+  "homepage": "https://github.com/cobbdb/simple-promise",
+  "authors": [
+    "cobbdb <cobbdb@gmail.com>"
+  ],
+  "description": "Simple and fast promise factory for Node and web apps.",
+  "main": "src/promise.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "promise",
+    "callback",
+    "simple",
+    "easy",
+    "basic",
+    "fast",
+    "webapp",
+    "node",
+    "app"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
