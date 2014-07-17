@@ -33,7 +33,7 @@ Sometimes things don't go as expected. Attach an optional error behavior to hand
 problems.
 
     greet.error(function (err, name) {
-        console.log('%s caused an error! %s', name);
+        console.log('%s caused an error!', name);
         console.error('%s : %s', err.name, err.message);
     });
 
