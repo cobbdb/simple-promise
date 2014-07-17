@@ -72,7 +72,7 @@ however you need.
     }).run('Tom');
 
 Both of these blocks will output the same string; `result`
-will equal `Tom says Hello!'
+will equal `Tom says Hello!`
 
 ---------
 * See: http://github.com/cobbdb/simple-promise
