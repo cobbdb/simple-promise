@@ -1,4 +1,4 @@
-# simple-promise [![Bower version](https://badge.fury.io/bo/jquery-beacons.svg)](http://badge.fury.io/bo/simple-promise) [![NPM version](https://badge.fury.io/js/grunt-docker-clone.svg)](http://badge.fury.io/js/simple-promise)
+# simple-promise [![Bower version](https://badge.fury.io/bo/simple-promise.svg)](http://badge.fury.io/bo/simple-promise) [![NPM version](https://badge.fury.io/js/simple-promise.svg)](http://badge.fury.io/js/simple-promise)
 
 Simple and fast promise factory for Node and web apps.
 
