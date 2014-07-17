@@ -17,5 +17,8 @@ module.exports = function (task) {
         cbError = cb;
         return child;
     };
+    child.run = function (opts) {
+        child(opts);
+    };
     return child;
 };

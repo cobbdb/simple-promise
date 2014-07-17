@@ -48,6 +48,13 @@ Each method supports chaining for quick and clean instantiation.
         console.error("Hopefully this won't happen to you.");
     });
 
+## Immediately invoke your promise
+You can invoke immediately with the `run` method.
+
+    var greet = promise(function (name) {
+        console.log('Hello %s!', name);
+    }).run('World');
+
 ---------
 * See: http://github.com/cobbdb/simple-promise
 * License: MIT
