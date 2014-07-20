@@ -29,5 +29,8 @@
   "homepage": "https://github.com/cobbdb/simple-promise",
   "devDependencies": {
     "jasmine-node": "~1.14.5"
+  },
+  "dependencies": {
+    "underscore": "^1.6.0"
   }
 }

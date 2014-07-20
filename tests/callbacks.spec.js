@@ -3,8 +3,9 @@ describe('simple-promise', function () {
     var taskVal, passVal, errVal, errObj;
     beforeEach(function () {
         taskVal = passVal = errVal = errObj = null;
-        tester = promise(function (val) {
+        tester = promise(function (val, done) {
             taskVal = val;
+            done();
         });
     });
     describe('core task', function () {

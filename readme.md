@@ -40,8 +40,9 @@ problems.
 ## Chain your method calls
 Each method supports chaining for quick and clean instantiation.
 
-    var greet = promise(function () {
+    var greet = promise(function (done) {
         console.log('First, this happened.');
+        done();
     }).then(function () {
         console.log('Then, this happened.');
     }).error(function () {
@@ -51,15 +52,20 @@ Each method supports chaining for quick and clean instantiation.
 ## Immediately invoke your promise
 You can invoke immediately with the `run` method.
 
-    promise(function (name) {
-        console.log('Hello %s!', name);
-    }).run('World');
+    promise(function (greeting, name) {
+        console.log('%s %s!', greeting, name);
+    }).run('Hello', 'World');
 
 ## Collect all return values
 Return values are passed along the chain so you can use them
 however you need.
 
-    var result = promise(function (name) {
+    var result;
+    promise(function (name, done) {
+        // Some async action.
+        setTimeout(function () {
+            result = done();
+        }, 100);
         return 'Hello!';
     }).then(function (name, message) {
         return name + ' says ' + message;
@@ -71,8 +77,8 @@ however you need.
         return name + ' says ' + err.message;
     }).run('Tom');
 
-Both of these blocks will output the same string; `result`
-will equal `Tom says Hello!`
+Both of these blocks will eventually output the same string;
+`result` will equal `Tom says Hello!`
 
 ---------
 * See: http://github.com/cobbdb/simple-promise
