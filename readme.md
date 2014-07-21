@@ -6,29 +6,74 @@ Simple and fast promise factory for Node and web apps.
     $ npm install simple-promise
 
 -------------
-## Load the library
+## API
+
+#### promise(task)
+- **Param** task *Function* Entry point of the promise.
+- **Returns** *Function*
+      var say = promise(function (msg, name) {
+
+  #### task([{args}], done)
+  - **Param** [args] *Any* Task arguments.
+  - **Param** done *Function* Call to signal end of task.
+  - **Returns** *Any* Return value of `task`.
+        var say = promise(function (msg, name, done) {
+
+    #### done([{args}])
+    - **Param** [args] *Any* Done arguments.
+    - **Returns** *Any* Return value of `then` contract.*
+          var thenResult = done('abc123');
+
+#### promise.then(contract)
+- **Param** contract *Function* Called on task's `done`.
+- **Returns** *Any* Return value of `then` contract.
+      say.then(function (async, sync, msg, name) {
+
+  #### contract({async}, sync, {[args]})
+  - **Param** async *Any* Call argument(s) of task's `done`.
+  - **Param** sync *Any* Return value of `task`.
+  - **Returns** *Any* Return value of `then` contract.
+        say.then(function (async1, async2, sync, msg, name) {
+
+#### promise.error(contract)
+- **Param** contract *Function* Called on `task` error.
+- **Returns** *Any* Return value of `error` contract.
+      say.error(function (err, msg, name) {
+
+  #### contract(err, {[args]})
+  - **Param** err *Error* Error object thrown in `task`.
+  - **Param** [args] *Any* All `task` arguments.
+  - **Returns** *Any* Return value of `error` contract.
+        say.error(function (err, msg, name) {
+
+-------------
+## Code Samples
+Here are some quick code samples to help you get started.
+
+### Load the library
 Simple-Promise is a CommonJS library, so the require statement can
 be used for both Node **and** web applications!
 
     var promise = require('simple-promise');
 
-## Creating a new promise
+#### Creating a new promise
 At their core, promises look and behave like a normal function.
 
-    var greet = promise(function (name) {
+    var greet = promise(function (name, done) {
         console.log('Hello %s!', name);
+        done();
     });
 
-## Attach a success behavior
+#### Attach a success behavior
 Callbacks can be a hassle and quickly create a mess. Tackle the common usage of callbacks with
 a promise instead. The `then` function is optional and is called immediately after successful
 completion of the promise.
 
-    greet.then(function (name) {
+    greet.then(function (async, sync, name) {
         console.log('Farewell %s!', name);
     });
 
-## Attach an error behavior
+#### Attach an error behavior
 Sometimes things don't go as expected. Attach an optional error behavior to handle any
 problems.
 
@@ -37,7 +82,7 @@ problems.
         console.error('%s : %s', err.name, err.message);
     });
 
-## Chain your method calls
+#### Chain your method calls
 Each method supports chaining for quick and clean instantiation.
 
     var greet = promise(function (done) {
@@ -49,14 +94,17 @@ Each method supports chaining for quick and clean instantiation.
         console.error("Hopefully this won't happen to you.");
     });
 
-## Immediately invoke your promise
-You can invoke immediately with the `run` method.
+#### Immediately invoke your promise
+You can invoke immediately with the `run` method or parens.
 
-    promise(function (greeting, name) {
+    var go = promise(function (greeting, name) {
         console.log('%s %s!', greeting, name);
-    }).run('Hello', 'World');
+    });
+    go.run('Hello', 'World');
+    // ~ or ~ like this:
+    go('Hello', 'World');
 
-## Collect all return values
+#### Collect all return values
 Return values are passed along the chain so you can use them
 however you need.
 
@@ -67,8 +115,8 @@ however you need.
             result = done();
         }, 100);
         return 'Hello!';
-    }).then(function (name, message) {
-        return name + ' says ' + message;
+    }).then(function (async, sync, name) {
+        return name + ' says ' + sync;
     }).run('Tom');
 
     var result = promise(function (name) {

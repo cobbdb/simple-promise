@@ -16,9 +16,9 @@ describe('simple-promise', function () {
             promise(function (val, done) {
                 taskVal = val;
                 done();
-            }).then(function (val) {
+            }).then(function (async, sync, val) {
                 passVal = val;
-            }).run('sara');
+            })('sara');
             expect(taskVal).not.toEqual('roger');
             expect(passVal).toEqual('sara');
         });
@@ -29,8 +29,8 @@ describe('simple-promise', function () {
                     total = done();
                 }, 100);
                 return 'abc';
-            }).then(function (val, res) {
-                return '123' + res;
+            }).then(function (async, sync, val) {
+                return '123' + sync;
             }).run();
             setTimeout(function () {
                 expect(tester).toEqual('abc');

@@ -4,9 +4,14 @@ module.exports = function (task) {
     var cbThen = function () {};
     var cbError = function () {};
     var done = function () {
+        var doneArgs = _(arguments).values();
+        if (doneArgs.length === 0) {
+            doneArgs = null;
+        }
         return cbThen.apply(this, _.flatten([
-            callArgs,
-            taskResult
+            doneArgs,
+            taskResult,
+            callArgs
         ]));
     };
     var child = function () {
@@ -23,8 +28,7 @@ module.exports = function (task) {
         } catch (err) {
             return cbError.apply(this, _.flatten([
                 err,
-                callArgs,
-                taskResult
+                callArgs
             ]));
         }
     };
