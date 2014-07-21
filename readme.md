@@ -11,40 +11,40 @@ Simple and fast promise factory for Node and web apps.
 #### promise(task)
 - **Param** task *Function* Entry point of the promise.
 - **Returns** *Function*
-      var say = promise(function (msg, name) {
+- `var say = promise(function (msg, name) {`
 
   #### task([{args}], done)
   - **Param** [args] *Any* Task arguments.
   - **Param** done *Function* Call to signal end of task.
   - **Returns** *Any* Return value of `task`.
-        var say = promise(function (msg, name, done) {
+  - `var say = promise(function (msg, name, done) {`
 
     #### done([{args}])
     - **Param** [args] *Any* Done arguments.
     - **Returns** *Any* Return value of `then` contract.*
-          var thenResult = done('abc123');
+    - `var thenResult = done('abc123');`
 
 #### promise.then(contract)
 - **Param** contract *Function* Called on task's `done`.
 - **Returns** *Any* Return value of `then` contract.
-      say.then(function (async, sync, msg, name) {
+- `say.then(function (async, sync, msg, name) {`
 
   #### contract({async}, sync, {[args]})
   - **Param** async *Any* Call argument(s) of task's `done`.
   - **Param** sync *Any* Return value of `task`.
   - **Returns** *Any* Return value of `then` contract.
-        say.then(function (async1, async2, sync, msg, name) {
+  - `say.then(function (async1, async2, sync, msg, name) {`
 
 #### promise.error(contract)
 - **Param** contract *Function* Called on `task` error.
 - **Returns** *Any* Return value of `error` contract.
-      say.error(function (err, msg, name) {
+- `say.error(function (err, msg, name) {`
 
   #### contract(err, {[args]})
   - **Param** err *Error* Error object thrown in `task`.
   - **Param** [args] *Any* All `task` arguments.
   - **Returns** *Any* Return value of `error` contract.
-        say.error(function (err, msg, name) {
+  - `say.error(function (err, msg, name) {`
 
 -------------
 ## Code Samples
