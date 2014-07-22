@@ -7,9 +7,7 @@ module.exports = function (task) {
     };
     var done = function () {
         var doneArgs = _(arguments).values();
-        if (doneArgs.length === 0) {
-            doneArgs = null;
-        }
+        taskResult = taskResult || [];
         return cbThen.apply(this, _.flatten([
             doneArgs,
             taskResult,
@@ -18,9 +16,6 @@ module.exports = function (task) {
     };
     var child = function () {
         callArgs = _(arguments).values();
-        if (callArgs.length === 0) {
-            callArgs = null;
-        }
         try {
             taskResult = task.apply(this, _.flatten([
                 callArgs,

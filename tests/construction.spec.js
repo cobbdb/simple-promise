@@ -3,23 +3,33 @@ describe('simple-promise', function () {
         var tester, promise = require('../src/promise.js');
         var taskVal, passVal, errVal;
         it('with no callbacks', function () {
-            tester = promise(function (val) {
-                taskVal = val;
-            });
+            expect(function () {
+                tester = promise(function (val) {
+                    taskVal = val;
+                });
+                expect(tester).toBeDefined();
+            }).not.toThrow();
         });
         it('with one callback', function () {
-            tester = promise(function (val) {
-            }).error(function () {
-            });
-            tester = promise(function (val) {
-            }).then(function () {
-            });
+            expect(function () {
+                tester = promise(function () {
+                }).error(function () {
+                });
+                expect(tester).toBeDefined();
+                tester = promise(function () {
+                }).then(function () {
+                });
+                expect(tester).toBeDefined();
+            }).not.toThrow();
         });
         it('with both callbacks', function () {
-            tester = promise(function (val) {
-            }).then(function () {
-            }).error(function () {
-            });
+            expect(function () {
+                tester = promise(function () {
+                }).then(function () {
+                }).error(function () {
+                });
+                expect(tester).toBeDefined();
+            }).not.toThrow();
         });
     });
 });

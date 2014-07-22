@@ -19,7 +19,7 @@ describe('simple-promise', function () {
             tester('pass');
             expect(taskVal).toEqual('pass');
             expect(passVal).toBeNull();
-            tester.then(function (async, sync, val) {
+            tester.then(function (val) {
                 passVal = val;
             });
             tester('more');
