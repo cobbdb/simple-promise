@@ -2,7 +2,9 @@ var _ = require('underscore');
 module.exports = function (task) {
     var callArgs = [], taskResult;
     var cbThen = function () {};
-    var cbError = function () {};
+    var cbError = function (err) {
+        throw err;
+    };
     var done = function () {
         var doneArgs = _(arguments).values();
         if (doneArgs.length === 0) {
