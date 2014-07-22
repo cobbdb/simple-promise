@@ -29,7 +29,7 @@ Simple and fast promise factory for Node and web apps.
 - **Returns** *Any* Return value of `then` contract.
 - `say.then(function (async, sync, msg, name) {`
 
-  #### contract({async}, sync, {[args]})
+  #### contract([{async}], [sync], {[args]})
   - **Param** async *Any* Call argument(s) of task's `done`.
   - **Param** sync *Any* Return value of `task`.
   - **Returns** *Any* Return value of `then` contract.
@@ -69,7 +69,7 @@ Callbacks can be a hassle and quickly create a mess. Tackle the common usage of 
 a promise instead. The `then` function is optional and is called immediately after successful
 completion of the promise.
 
-    greet.then(function (async, sync, name) {
+    greet.then(function (name) {
         console.log('Farewell %s!', name);
     });
 
@@ -85,7 +85,7 @@ problems.
 #### Chain your method calls
 Each method supports chaining for quick and clean instantiation.
 
-    var greet = promise(function (done) {
+    promise(function (done) {
         console.log('First, this happened.');
         done();
     }).then(function () {
@@ -115,7 +115,7 @@ however you need.
             result = done();
         }, 100);
         return 'Hello!';
-    }).then(function (async, sync, name) {
+    }).then(function (sync, name) {
         return name + ' says ' + sync;
     }).run('Tom');
 
