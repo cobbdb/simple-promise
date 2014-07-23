@@ -38,5 +38,11 @@ describe('simple-promise', function () {
                 done();
             }, 200);
         });
+        it('protects array args', function () {
+            tester = promise(function (val) {
+                taskVal = val;
+            }).run(['test1', 'test2']);
+            expect(taskVal).toEqual(['test1', 'test2']);
+        });
     });
 });

@@ -12,7 +12,7 @@ module.exports = function (task) {
             doneArgs,
             taskResult,
             callArgs
-        ]));
+        ], true));
     };
     var child = function () {
         callArgs = _(arguments).values();
@@ -20,13 +20,13 @@ module.exports = function (task) {
             taskResult = task.apply(this, _.flatten([
                 callArgs,
                 done
-            ]));
+            ], true));
             return taskResult;
         } catch (err) {
             return cbError.apply(this, _.flatten([
                 err,
                 callArgs
-            ]));
+            ], true));
         }
     };
     child.then = function (cb) {
