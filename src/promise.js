@@ -8,11 +8,18 @@ module.exports = function (task) {
     var done = function () {
         var doneArgs = _(arguments).values();
         taskResult = taskResult || [];
-        return cbThen.apply(this, _.flatten([
-            doneArgs,
-            taskResult,
-            callArgs
-        ], true));
+        try {
+            return cbThen.apply(this, _.flatten([
+                doneArgs,
+                taskResult,
+                callArgs
+            ], true));
+        } catch (err) {
+            return cbError.apply(this, _.flatten([
+                err,
+                callArgs
+            ], true));
+        }
     };
     var child = function () {
         callArgs = _(arguments).values();

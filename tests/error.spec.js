@@ -9,13 +9,23 @@ describe('simple-promise', function () {
                 tester();
             }).toThrow('testerror');
         });
-        it('exposes Error obj when defined', function () {
-            var tester = promise(function (done) {
+        it('exposes Error obj when defined', function (done) {
+            var tester = promise(function () {
                 throw Error('testerror');
             }).error(function (err) {
                 expect(err.message).toEqual('testerror');
                 done();
-            });
+            }).run();
+        });
+        it('catches errors in "then"', function (done) {
+            var tester = promise(function (fin) {
+                fin();
+            }).then(function () {
+                throw Error('testerror');
+            }).error(function (err) {
+                expect(err.message).toEqual('testerror');
+                done();
+            }).run();
         });
     });
 });
